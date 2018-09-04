@@ -103,7 +103,6 @@ impl ToolManager {
         tool_names.push("FlowLengthDiff".to_string());
         tool_names.push("Hillslopes".to_string());
         tool_names.push("ImpoundmentIndex".to_string());
-        tool_names.push("ImpoundmentIndexAnthony".to_string());
         tool_names.push("Isobasins".to_string());
         tool_names.push("JensonSnapPourPoints".to_string());
         tool_names.push("MaxUpslopeFlowpathLength".to_string());
@@ -321,7 +320,6 @@ impl ToolManager {
 
         // terrain_analysis
         tool_names.push("Aspect".to_string());
-        tool_names.push("FeaturePreservingDenoiseAnthony".to_string());
         tool_names.push("FeaturePreservingDenoise".to_string());
         tool_names.push("DevFromMeanElev".to_string());
         tool_names.push("DiffFromMeanElev".to_string());
@@ -504,7 +502,6 @@ impl ToolManager {
             "flowlengthdiff" => Some(Box::new(tools::hydro_analysis::FlowLengthDiff::new())),
             "hillslopes" => Some(Box::new(tools::hydro_analysis::Hillslopes::new())),
             "impoundmentindex" => Some(Box::new(tools::hydro_analysis::ImpoundmentIndex::new())),
-            "impoundmentindexanthony" => Some(Box::new(tools::hydro_analysis::ImpoundmentIndexAnthony::new())),
             "isobasins" => Some(Box::new(tools::hydro_analysis::Isobasins::new())),
             "jensonsnappourpoints" => {
                 Some(Box::new(tools::hydro_analysis::JensonSnapPourPoints::new()))
@@ -882,9 +879,6 @@ impl ToolManager {
 
             // terrain_analysis
             "aspect" => Some(Box::new(tools::terrain_analysis::Aspect::new())),
-            "featurepreservingdenoiseanthony" => Some(Box::new(
-                tools::terrain_analysis::FeaturePreservingDenoiseAnthony::new(),
-            )),
             "featurepreservingdenoise" => Some(Box::new(
                 tools::terrain_analysis::FeaturePreservingDenoise::new(),
             )),
