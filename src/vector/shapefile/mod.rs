@@ -24,7 +24,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::io::{BufReader, BufWriter, Error, ErrorKind};
 use std::str;
-use structures::Point2D;
+use vector::Point2D;
 
 // 100 bytes in size
 #[derive(Default, Clone)]
@@ -588,8 +588,7 @@ impl Shapefile {
             d = bor.read_u8() as u32 == 0x2A;
             let mut r: Vec<FieldData> = vec![];
             for j in 0..self.attributes.header.num_fields {
-                str_rep = bor
-                    .read_utf8(self.attributes.fields[j as usize].field_length as usize)
+                str_rep = bor.read_utf8(self.attributes.fields[j as usize].field_length as usize)
                     .replace(char::from(0), "")
                     .replace("*", "")
                     .trim()
@@ -1101,11 +1100,7 @@ impl Shapefile {
                         let dc = self.attributes.fields[j as usize].decimal_count as usize;
                         let s = v.to_string();
                         let d = v.trunc().to_string();
-                        let mut c = if s.len() > d.len() {
-                            s[d.len() + 1..s.len()].to_string()
-                        } else {
-                            String::new()
-                        };
+                        let mut c = s[d.len() + 1..s.len()].to_string();
                         if c.len() > dc {
                             c = c[0..dc].to_string();
                         }

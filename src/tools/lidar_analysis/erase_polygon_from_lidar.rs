@@ -2,19 +2,19 @@
 This tool is part of the WhiteboxTools geospatial analysis library.
 Authors: Dr. John Lindsay
 Created: 25/04/2018
-Last Modified: 30/08/2018
+Last Modified: 25/04/2018
 License: MIT
 */
 
-use algorithms;
 use lidar::*;
 use std::env;
 use std::io::{Error, ErrorKind};
 use std::path;
-use structures::{BoundingBox, Point2D};
+use structures::BoundingBox;
 use time;
 use tools::*;
-use vector::{ShapeType, Shapefile};
+use vector;
+use vector::{Point2D, ShapeType, Shapefile};
 
 pub struct ErasePolygonFromLidar {
     name: String,
@@ -65,8 +65,7 @@ impl ErasePolygonFromLidar {
         let sep: String = path::MAIN_SEPARATOR.to_string();
         let p = format!("{}", env::current_dir().unwrap().display());
         let e = format!("{}", env::current_exe().unwrap().display());
-        let mut short_exe = e
-            .replace(&p, "")
+        let mut short_exe = e.replace(&p, "")
             .replace(".exe", "")
             .replace(".", "")
             .replace(&sep, "");
@@ -240,7 +239,7 @@ impl WhiteboxTool for ErasePolygonFromLidar {
                                 record.num_points as usize - 1
                             };
 
-                            if algorithms::point_in_poly(
+                            if vector::point_in_poly(
                                 &Point2D { x: p.x, y: p.y },
                                 &record.points[start_point_in_part..end_point_in_part + 1],
                             ) {
@@ -260,7 +259,7 @@ impl WhiteboxTool for ErasePolygonFromLidar {
                                 record.num_points as usize - 1
                             };
 
-                            if algorithms::point_in_poly(
+                            if vector::point_in_poly(
                                 &Point2D { x: p.x, y: p.y },
                                 &record.points[start_point_in_part..end_point_in_part + 1],
                             ) {

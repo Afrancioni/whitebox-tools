@@ -6,15 +6,14 @@ Last Modified: 27/03/2018
 License: MIT
 */
 
-use algorithms;
 use raster::*;
 use std::env;
 use std::io::{Error, ErrorKind};
 use std::path;
-use structures::Point2D;
 use time;
 use tools::*;
-use vector::{ShapeType, Shapefile};
+use vector;
+use vector::{Point2D, ShapeType, Shapefile};
 
 pub struct ErasePolygonFromRaster {
     name: String,
@@ -64,8 +63,7 @@ impl ErasePolygonFromRaster {
         let sep: String = path::MAIN_SEPARATOR.to_string();
         let p = format!("{}", env::current_dir().unwrap().display());
         let e = format!("{}", env::current_exe().unwrap().display());
-        let mut short_exe = e
-            .replace(&p, "")
+        let mut short_exe = e.replace(&p, "")
             .replace(".exe", "")
             .replace(".", "")
             .replace(&sep, "");
@@ -258,7 +256,7 @@ impl WhiteboxTool for ErasePolygonFromRaster {
                         y = input.get_y_from_row(r);
                         for c in starting_col..ending_col {
                             x = input.get_x_from_column(c);
-                            if algorithms::point_in_poly(
+                            if vector::point_in_poly(
                                 &Point2D { x: x, y: y },
                                 &record.points[start_point_in_part..end_point_in_part + 1],
                             ) {
@@ -321,7 +319,7 @@ impl WhiteboxTool for ErasePolygonFromRaster {
                         y = input.get_y_from_row(r);
                         for c in starting_col..ending_col {
                             x = input.get_x_from_column(c);
-                            if algorithms::point_in_poly(
+                            if vector::point_in_poly(
                                 &Point2D { x: x, y: y },
                                 &record.points[start_point_in_part..end_point_in_part + 1],
                             ) {

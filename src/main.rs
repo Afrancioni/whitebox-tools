@@ -32,7 +32,6 @@ by the WhiteboxTools library:
 */
 
 extern crate byteorder;
-// extern crate flate2;
 extern crate kdtree;
 extern crate lzw;
 extern crate nalgebra as na;
@@ -43,12 +42,10 @@ extern crate serde_json;
 extern crate statrs;
 extern crate time;
 
-pub mod algorithms;
 pub mod io_utils;
 pub mod lidar;
 pub mod raster;
 pub mod rendering;
-pub mod spatial_ref_system;
 pub mod structures;
 pub mod tools;
 pub mod vector;
@@ -122,8 +119,7 @@ fn run() -> Result<(), Error> {
             help();
             return Ok(());
         } else if arg.starts_with("-cd") || arg.starts_with("--cd") || arg.starts_with("--wd") {
-            let mut v = arg
-                .replace("--cd", "")
+            let mut v = arg.replace("--cd", "")
                 .replace("--wd", "")
                 .replace("-cd", "")
                 .replace("\"", "")
@@ -139,8 +135,7 @@ fn run() -> Result<(), Error> {
             }
             working_dir = v.to_string();
         } else if arg.starts_with("-run") || arg.starts_with("--run") || arg.starts_with("-r") {
-            let mut v = arg
-                .replace("--run", "")
+            let mut v = arg.replace("--run", "")
                 .replace("-run", "")
                 .replace("-r", "")
                 .replace("\"", "")
@@ -151,8 +146,7 @@ fn run() -> Result<(), Error> {
             tool_name = v;
             run_tool = true;
         } else if arg.starts_with("-toolhelp") || arg.starts_with("--toolhelp") {
-            let mut v = arg
-                .replace("--toolhelp", "")
+            let mut v = arg.replace("--toolhelp", "")
                 .replace("-toolhelp", "")
                 .replace("\"", "")
                 .replace("\'", "");
@@ -162,8 +156,7 @@ fn run() -> Result<(), Error> {
             tool_name = v;
             tool_help = true;
         } else if arg.starts_with("-toolparameters") || arg.starts_with("--toolparameters") {
-            let mut v = arg
-                .replace("--toolparameters", "")
+            let mut v = arg.replace("--toolparameters", "")
                 .replace("-toolparameters", "")
                 .replace("\"", "")
                 .replace("\'", "");
@@ -173,8 +166,7 @@ fn run() -> Result<(), Error> {
             tool_name = v;
             tool_parameters = true;
         } else if arg.starts_with("-toolbox") || arg.starts_with("--toolbox") {
-            let mut v = arg
-                .replace("--toolbox", "")
+            let mut v = arg.replace("--toolbox", "")
                 .replace("-toolhelp", "")
                 .replace("\"", "")
                 .replace("\'", "");
@@ -198,8 +190,7 @@ fn run() -> Result<(), Error> {
             // keywords = v.split(" ").map(|s| s.to_string()).collect();
             list_tools = true;
         } else if arg.starts_with("-viewcode") || arg.starts_with("--viewcode") {
-            let mut v = arg
-                .replace("--viewcode", "")
+            let mut v = arg.replace("--viewcode", "")
                 .replace("-viewcode", "")
                 .replace("\"", "")
                 .replace("\'", "");

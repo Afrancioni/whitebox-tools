@@ -3,14 +3,11 @@ pub mod geokeys;
 pub mod tiff_consts;
 
 extern crate lzw;
-// extern crate flate2;
 
-// use flate2::read::GzDecoder;
 use std::cmp::min;
 use std::collections::HashMap;
 use std::default::Default;
 use std::fmt;
-// use std::io::prelude::*;
 use std::io::Error;
 use std::io::ErrorKind;
 // use std::cmp::Ordering;
@@ -358,11 +355,6 @@ pub fn read_geotiff<'a>(
         _ => [0].to_vec(),
     };
 
-    configs.nodata = match ifd_map.get(&TAG_GDAL_NODATA) {
-        Some(ifd) => ifd.interpret_as_ascii().parse::<f64>().unwrap(),
-        _ => -32768f64,
-    };
-
     match ifd_map.get(&34735) {
         Some(ifd) => geokeys.add_key_directory(&ifd.data, configs.endian),
         _ => {
@@ -682,13 +674,10 @@ pub fn read_geotiff<'a>(
                         buf.extend(bytes.iter().map(|&i| i));
                     }
                 }
-                // COMPRESS_DEFLATE => {
-                //     let mut dec = GzDecoder::new(th.buffer[offset..(offset + n)].to_vec());
-                // }
                 _ => {
                     return Err(Error::new(
                         ErrorKind::InvalidData,
-                        "The GeoTIFF decoder currently only supports PACKBITS and LZW compression.",
+                        "The GeoTIFF decoder currently only supports PACKBITS compression.",
                     ))
                 }
             }

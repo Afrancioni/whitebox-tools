@@ -165,7 +165,7 @@ The *WhiteboxTools Runner* does not rely on the *Whitebox GAT* user interface at
 
 Eventually most of *Whitebox GAT's* approximately 450 tools [will be ported](tool_porting.md) to *WhiteboxTools*, although this is an immense task. Support for vector data (Shapefile/GeoJSON) reading/writing and a topological analysis library (like the Java Topology Suite) will need to be added in order to port the tools involving vector spatial data. Opportunities to parallelize algorithms will be sought during porting. All new plugin tools will be added to *Whitebox GAT* using this library of functions.
 
-The library currently contains the following 333 tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. The following is a complete listing of available tools, with brief tool descriptions.
+The library currently contains the following 326 tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. The following is a complete listing of available tools, with brief tool descriptions.
 
 **Data Tools**
 
@@ -174,7 +174,6 @@ The library currently contains the following 333 tools, which are each grouped b
 - ***ExportTableToCsv***: Exports an attribute table to a CSV text file.
 - ***IdwInterpolation***: Interpolates vector points into a raster surface using an inverse-distance weighted scheme.
 - ***NewRasterFromBase***: Creates a new raster using a base image.
-- ***PolygonsToLines***: Converts vector polygons into polylines.
 - ***PrintGeoTiffTags***: Prints the tags within a GeoTIFF.
 - ***SetNodataValue***: Assign a specified value in an input image to the NoData value.
 - ***VectorLinesToRaster***: Converts a vector containing polylines into a raster.
@@ -201,7 +200,6 @@ The library currently contains the following 333 tools, which are each grouped b
 - ***MaxAnisotropyDev***: Calculates the maximum anisotropy (directionality) in elevation deviation over a range of spatial scales.
 - ***MaxAnisotropyDevSignature***: Calculates the anisotropy in deviation from mean for points over a range of spatial scales.
 - ***MaxBranchLength***: Lindsay and Seibert's (2013) branch length index is used to map drainage divides or ridge lines.
-- ***MaxDifferenceFromMean***: Calculates the maximum difference from mean elevation over a range of spatial scales.
 - ***MaxDownslopeElevChange***: Calculates the maximum downslope change in elevation between a grid cell and its eight downslope neighbors.
 - ***MaxElevationDeviation***: Calculates the maximum elevation deviation over a range of spatial scales.
 - ***MaxElevDevSignature***: Calculates the maximum elevation deviation over a range of spatial scales and for a set of points.
@@ -247,18 +245,15 @@ The library currently contains the following 333 tools, which are each grouped b
 - ***CreatePlane***: Creates a raster image based on the equation for a simple plane.
 - ***EdgeProportion***: Calculate the proportion of cells in a raster polygon that are edge cells.
 - ***ErasePolygonFromRaster***: Erases (cuts out) a vector polygon from a raster.
-- ***EuclideanAllocation***: Assigns grid cells in the output raster the value of the nearest target cell in the input image, measured by the Shih and Wu (2004) Euclidean distance transform. 
+- ***EuclideanAllocation***: Assigns grid cells in the output raster the value of the nearest target cell in the input image, measured by the Shih and Wu (2004) Euclidean distance transform.
 - ***EuclideanDistance***: Calculates the Shih and Wu (2004) Euclidean distance transform.
-- ***ExtractNodes***: Converts vector lines or polygons into vertex points.
-- ***ExtractRasterValuesAtPoints***: Extracts the values of raster(s) at vector point locations.
-- ***FindLowestOrHighestPoints***: Locates the lowest and/or highest valued cells in a raster.
+ -***FindLowestOrHighestPoints***: Locates the lowest and/or highest valued cells in a raster.
 - ***FindPatchOrClassEdgeCells***: Finds all cells located on the edge of patch or class features.
 - ***HighestPosition***: Identifies the stack position of the maximum value within a raster stack on a cell-by-cell basis.
 - ***LowestPosition***: Identifies the stack position of the minimum value within a raster stack on a cell-by-cell basis.
 - ***MaxAbsoluteOverlay***: Evaluates the maximum absolute value for each grid cell from a stack of input rasters.
 - ***MaxOverlay***: Evaluates the maximum value for each grid cell from a stack of input rasters.
 - ***MinAbsoluteOverlay***: Evaluates the minimum absolute value for each grid cell from a stack of input rasters.
-- ***MinimumConvexHull***: Creates a vector convex polygon around vector features.
 - ***MinOverlay***: Evaluates the minimum value for each grid cell from a stack of input rasters.
 - ***PercentEqualTo***: Calculates the percentage of a raster stack that have cell values equal to an input on a cell-by-cell basis.
 - ***PercentGreaterThan***: Calculates the percentage of a raster stack that have cell values greater than an input on a cell-by-cell basis.
@@ -416,10 +411,8 @@ The library currently contains the following 333 tools, which are each grouped b
 - ***LidarThin***: Thins a LiDAR point cloud, reducing point density.
 - ***LidarThinHighDensity***: Thins points from high density areas within a LiDAR point cloud.
 - ***LidarTile***: Tiles a LiDAR LAS file into multiple LAS files.
-- ***LidarTileFootprint***: Creates a vector polygon of the convex hull of a LiDAR point cloud.
 - ***LidarTophatTransform***: Performs a white top-hat transform on a Lidar dataset; as an estimate of height above ground, this is useful for modelling the vegetation canopy.
 - ***NormalVectors***: Calculates normal vectors for points within a LAS file and stores these data (XYZ vector components) in the RGB field.
-- ***SelectTilesByPolygon***: Copies LiDAR tiles overlapping with a polygon into an output directory.
 
 **Mathematical and Statistical Analysis**
 
