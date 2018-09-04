@@ -30,6 +30,7 @@ impl ToolManager {
         tool_names.push("ExportTableToCsv".to_string());
         tool_names.push("IdwInterpolation".to_string());
         tool_names.push("NewRasterFromBase".to_string());
+        tool_names.push("PolygonsToLines".to_string());
         tool_names.push("PrintGeoTiffTags".to_string());
         tool_names.push("SetNodataValue".to_string());
         tool_names.push("VectorLinesToRaster".to_string());
@@ -52,6 +53,7 @@ impl ToolManager {
         tool_names.push("ErasePolygonFromRaster".to_string());
         tool_names.push("EuclideanAllocation".to_string());
         tool_names.push("EuclideanDistance".to_string());
+        tool_names.push("ExtractNodes".to_string());
         tool_names.push("ExtractRasterValuesAtPoints".to_string());
         tool_names.push("FindLowestOrHighestPoints".to_string());
         tool_names.push("FindPatchOrClassEdgeCells".to_string());
@@ -60,6 +62,7 @@ impl ToolManager {
         tool_names.push("MaxAbsoluteOverlay".to_string());
         tool_names.push("MaxOverlay".to_string());
         tool_names.push("MinAbsoluteOverlay".to_string());
+        tool_names.push("MinimumConvexHull".to_string());
         tool_names.push("MinOverlay".to_string());
         tool_names.push("PercentEqualTo".to_string());
         tool_names.push("PercentGreaterThan".to_string());
@@ -215,8 +218,10 @@ impl ToolManager {
         tool_names.push("LidarThin".to_string());
         tool_names.push("LidarThinHighDensity".to_string());
         tool_names.push("LidarTile".to_string());
+        tool_names.push("LidarTileFootprint".to_string());
         tool_names.push("LidarTophatTransform".to_string());
         tool_names.push("NormalVectors".to_string());
+        tool_names.push("SelectTilesByPolygon".to_string());
 
         // mathematical and statistical_analysis
         tool_names.push("AbsoluteValue".to_string());
@@ -340,6 +345,7 @@ impl ToolManager {
         tool_names.push("MaxAnisotropyDev".to_string());
         tool_names.push("MaxAnisotropyDevSignature".to_string());
         tool_names.push("MaxBranchLength".to_string());
+        tool_names.push("MaxDifferenceFromMean".to_string());
         tool_names.push("MaxDownslopeElevChange".to_string());
         tool_names.push("MaxElevDevSignature".to_string());
         tool_names.push("MaxElevationDeviation".to_string());
@@ -387,6 +393,7 @@ impl ToolManager {
             "exporttabletocsv" => Some(Box::new(tools::data_tools::ExportTableToCsv::new())),
             "idwinterpolation" => Some(Box::new(tools::data_tools::IdwInterpolation::new())),
             "newrasterfrombase" => Some(Box::new(tools::data_tools::NewRasterFromBase::new())),
+            "polygonstolines" => Some(Box::new(tools::data_tools::PolygonsToLines::new())),
             "printgeotifftags" => Some(Box::new(tools::data_tools::PrintGeoTiffTags::new())),
             "setnodatavalue" => Some(Box::new(tools::data_tools::SetNodataValue::new())),
             "vectorlinestoraster" => Some(Box::new(tools::data_tools::VectorLinesToRaster::new())),
@@ -419,6 +426,7 @@ impl ToolManager {
                 Some(Box::new(tools::gis_analysis::EuclideanAllocation::new()))
             }
             "euclideandistance" => Some(Box::new(tools::gis_analysis::EuclideanDistance::new())),
+            "extractnodes" => Some(Box::new(tools::gis_analysis::ExtractNodes::new())),
             "extractrastervaluesatpoints" => Some(Box::new(
                 tools::gis_analysis::ExtractRasterValuesAtPoints::new(),
             )),
@@ -433,6 +441,7 @@ impl ToolManager {
             "maxabsoluteoverlay" => Some(Box::new(tools::gis_analysis::MaxAbsoluteOverlay::new())),
             "maxoverlay" => Some(Box::new(tools::gis_analysis::MaxOverlay::new())),
             "minabsoluteoverlay" => Some(Box::new(tools::gis_analysis::MinAbsoluteOverlay::new())),
+            "minimumconvexhull" => Some(Box::new(tools::gis_analysis::MinimumConvexHull::new())),
             "minoverlay" => Some(Box::new(tools::gis_analysis::MinOverlay::new())),
             "percentequalto" => Some(Box::new(tools::gis_analysis::PercentEqualTo::new())),
             "percentgreaterthan" => Some(Box::new(tools::gis_analysis::PercentGreaterThan::new())),
@@ -706,10 +715,16 @@ impl ToolManager {
                 Some(Box::new(tools::lidar_analysis::LidarThinHighDensity::new()))
             }
             "lidartile" => Some(Box::new(tools::lidar_analysis::LidarTile::new())),
+            "lidartilefootprint" => {
+                Some(Box::new(tools::lidar_analysis::LidarTileFootprint::new()))
+            }
             "lidartophattransform" => {
                 Some(Box::new(tools::lidar_analysis::LidarTophatTransform::new()))
             }
             "normalvectors" => Some(Box::new(tools::lidar_analysis::NormalVectors::new())),
+            "selecttilesbypolygon" => {
+                Some(Box::new(tools::lidar_analysis::SelectTilesByPolygon::new()))
+            }
 
             // mathematical and statistical_analysis
             "absolutevalue" => Some(Box::new(tools::math_stat_analysis::AbsoluteValue::new())),
@@ -915,6 +930,9 @@ impl ToolManager {
                 tools::terrain_analysis::MaxAnisotropyDevSignature::new(),
             )),
             "maxbranchlength" => Some(Box::new(tools::terrain_analysis::MaxBranchLength::new())),
+            "maxdifferencefrommean" => Some(Box::new(
+                tools::terrain_analysis::MaxDifferenceFromMean::new(),
+            )),
             "maxdownslopeelevchange" => Some(Box::new(
                 tools::terrain_analysis::MaxDownslopeElevChange::new(),
             )),
